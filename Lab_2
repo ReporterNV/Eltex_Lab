@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void inp_str( ){
+}
+
+void out_str( ){
+}
+
+void main(){
+unsigned int N;//Number of strings 
+scanf("%d", &N);
+
+
+
+
+
+}
+
