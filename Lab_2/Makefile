@@ -1,8 +1,8 @@
-Lab_2: Lab2.c
-	gcc -Wall -std=c99 Lab2.c -o Lab2
-run: Lab1
-	./Lab2
-rundb: Lab1
-	./Lab2 > text.txt
+Lab_2: Lab_2.c
+	gcc -Wall -std=c99 Lab_2.c -o Lab_2
+run: Lab_2
+	./Lab_2
+rundb: Lab_2
+	./Lab_2 < text.txt
 clean: 
-	rm Lab2 
+	rm Lab_2 
