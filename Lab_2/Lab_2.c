@@ -6,10 +6,6 @@
 static unsigned int N = 0;
 static unsigned int counter = 0;
 
-int inp_str(char **p){
-
-printf("\n Enter number of strings: ");
-scanf("%u", &N);
 
 int inp_str(char **p){
 
@@ -27,34 +23,35 @@ for (int i = 0; i < N; i++){
 	p[i] = (char*)malloc(sizeof(char)*strlen(buff));
 
 	strcpy(p[i], buff);
-printf("%s\n", p[i]);
+	printf("%s\n", p[i]);
 	}
 return 0;
 }
 
 void out_str(char **p){
-for(int i = 0; i < N; i++)
-	printf("%s\n", mass[i]);
+	for(int i = 0; i < N; i++)
+		printf("%s\n", p[i]);
 }
 
 
 int fsort(char *a, char *b){
 
-return a-b ;
+	return a-b ;
 } 
-int main(){
 
-char **mass = NULL; 
+int main(int agvc, char *argv){
 
-if(inp_str(mass)){
-puts("ERROR");
-}
+	char **mass = NULL; 
 
-qsort();
+	if(inp_str(mass)){
+		puts("ERROR");
+	}
 
-printf("OUTPUT:\n");
+//	qsort();
 
-out_str(mass);
+	printf("OUTPUT:\n");
+
+	out_str(mass);
 
 return 0;
 
