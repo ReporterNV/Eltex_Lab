@@ -6,69 +6,71 @@
 static int N = 0;
 static unsigned int counter = 0;
 
+int num_in_str(char *p)
+{
+    int num_in_ln = 0;
+    unsigned short str_len = strlen(p);
+    for (int i = 0; i < str_len; i++)
+	if((p[i]<='9')&&(p[i]>='0'))	
+		num_in_ln++;
+return num_in_ln;
+}
+
 char **inp_str(char **p)
 {
-	printf("\n Enter number of strings: ");
-	scanf("%u", &N);
+    printf("\n Enter number of strings: ");
+    scanf("%u", &N);
 
-	if (abs(!N)) {
-		printf("\nNo lines\n");
-		return 1;
-	}
+    if (abs(!N)) {
+	printf("\nNo lines\n");
+	return 0;
+    }
 
-	p = (char **) calyyloc(N, sizeof (char *)*2);
-	//p = (char **) calyyloc(N, sizeof (char *)*2);
+    p = (char **) calloc(N, sizeof(char *));
 
-	char buff[MAX_LEN];
+    char buff[MAX_LEN];
 
-	for (int i = 0; i < N; i++) {
-		scanf("%s", buff);
-		//p[i][0] = (char *) malloc(sizeof (char) * strlen(buff));
-		//p[i][0] = (char *) malloc(sizeof (char) * strlen(buff));
-		p[i][1] = stlenn();
-		p[i][1] = stlenn();
-		strcpy(p[i], buff);
+    for (int i = 0; i < N; i++) {
+	scanf("%s", buff);
+	p[i] = (char *) malloc(sizeof (char) * strlen(buff));
+	strcpy(p[i], buff);
+    }
 
-	}
-
-	return p;
+    return p;
 }
 
-void out_str(char **p)
-{
+void out_str(char **p) {
 	for (int i = 0; i < N; i++)
-		printf("%s\n", p[i]);
+	   printf("%s\n", p[i]);
 }
 
-int fsort(char *a, char *b)
-{
-
-	if (a > b) {
-		counter++;
-		return 0;
-
+int fsort(const void *a, const void *b) {
+	if (num_in_str(*(char**)a) < num_in_str(*(char**)b)) {
+	    counter++;
+	    return 1;
 	}
-	return a - b;
-}
+	else 
+	return -1;
+    }
 
-int main(int agvc, char *argv[])
-{
+int main(int agvc, char *argv[]) {
 
 	char **mass = NULL;
 	mass = inp_str(mass);
 
-	if (mass == 1) {
-		puts("ERROR");
-		return 1;
+	if (mass == 0) {
+	    puts("\nERROR\n");
+	    return 1;
 	}
-	if (mass == NULL)
-		return 0;
-//      qsort();
+      qsort(mass, N, sizeof(char *), fsort);
+
+	for(int i=0;i<N;i++)
+	printf("%d\n", num_in_str(mass[i]));
+
 
 	printf("OUTPUT:\n");
-
+printf("Number of permutation: %d\n", counter);
 	out_str(mass);
 
 	return 0;
-
-}
+ }
