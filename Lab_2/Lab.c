@@ -57,7 +57,6 @@ void free_all(char **p){
 
     for (int i = 0; i < N; i++) {
 	 free(p[i]);
-free(p);
 }
 
 }
@@ -66,18 +65,24 @@ int main(int agvc, char *argv[]) {
 
 	char **mass = NULL;
 	mass = inp_str(mass);
-
+puts("\nEND INP\n");
 	if (mass == 0) {
 	    puts("\nERROR\n");
 	    return 1;
 	}
       qsort(mass, N, sizeof(char *), fsort);
 
+puts("\nEND sort\n");
 
 
 	printf("OUTPUT:\n");
 printf("Number of permutation: %d\n", counter);
 	out_str(mass);
+
+puts("\nEND out\n");
 free_all(mass);
+puts("\nEND elem\n");
+free(mass);
+puts("\nEND free\n");
 	return 0;
  }
