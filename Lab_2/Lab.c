@@ -53,6 +53,15 @@ int fsort(const void *a, const void *b) {
 	return -1;
     }
 
+void free_all(char **p){
+
+    for (int i = 0; i < N; i++) {
+	 free(p[i]);
+free(p);
+}
+
+}
+
 int main(int agvc, char *argv[]) {
 
 	char **mass = NULL;
@@ -64,13 +73,11 @@ int main(int agvc, char *argv[]) {
 	}
       qsort(mass, N, sizeof(char *), fsort);
 
-	for(int i=0;i<N;i++)
-	printf("%d\n", num_in_str(mass[i]));
 
 
 	printf("OUTPUT:\n");
 printf("Number of permutation: %d\n", counter);
 	out_str(mass);
-
+free_all(mass);
 	return 0;
  }
