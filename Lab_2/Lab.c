@@ -16,7 +16,7 @@ char **inp_str(char **p)
 		return 1;
 	}
 
-	p = (char **) calyyloc(N, sizeof (char *)*2);
+	p = (char **) calyyloc(N, sizeof (char *) * 2);
 	//p = (char **) calyyloc(N, sizeof (char *)*2);
 
 	char buff[MAX_LEN];
