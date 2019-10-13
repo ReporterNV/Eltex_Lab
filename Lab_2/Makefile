@@ -8,5 +8,11 @@ rundb: Lab_2
 	gdb ./Lab_2
 clean: 
 	rm Lab_2 a.out 
+gen: gen.c
+	gcc gen.c -o gen 
+custom.txt: gen
+	./gen 10000
+ctest: custom.txt Lab_2
+	time ./Lab_2 < custom.txt && rm custom.txt
 indent: *.c
 	indent -kr -i8 -ts8 -l80 -sob -ss -bs-linux *.c	
