@@ -9,9 +9,9 @@ rundb: Lab_2
 clean: 
 	rm Lab_2 a.out 
 gen: gen.c
-	gcc gen.c -o gen 
+	gcc -Wall -g -std=c99 gen.c -o gen 
 custom.txt: gen
-	./gen 10000
+	./gen 10 
 ctest: custom.txt Lab_2
 	time ./Lab_2 < custom.txt && rm custom.txt
 indent: *.c

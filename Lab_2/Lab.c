@@ -6,6 +6,9 @@
 static int N = 0;
 static unsigned int counter = 0;
 
+
+global char ***mass = NULL;
+
 int num_in_str(char *p)
 {
     int num_in_ln = 0;
@@ -16,36 +19,38 @@ int num_in_str(char *p)
 return num_in_ln;
 }
 
-char **inp_str(char **p)
+void inp_str()
 {
     printf("\n Enter number of strings: ");
     scanf("%u", &N);
 
     if (abs(!N)) {
 	printf("\nNo lines\n");
-	return 0;
-    }
+break();    
+}
 
-    p = (char **) calloc(N, sizeof(char *));
-
+    mass = (char ***) calloc(2, sizeof(char **));
+    z[0] = (char **) calloc(N, sizeof(char *));
+    z[1] = (char **) calloc(N, sizeof(char *));
+    
     char buff[MAX_LEN];
 
     for (int i = 0; i < N; i++) {
 	scanf("%s", buff);
-	p[i] = (char *) malloc(sizeof (char) * strlen(buff));
-	strcpy(p[i], buff);
-    }
-
-    return p;
+	z[0][i] = (char *) malloc(sizeof (char) * strlen(buff));
+	strcpy(z[0][i], buff);
+        *z[1][i]= (unsigned char)num_in_str(z[0][i]); 
+}
+    return z;
 }
 
 void out_str(char **p) {
 	for (int i = 0; i < N; i++)
-	   printf("%s\n", p[i]);
+	   printf("%s\n", p[i][0]);
 }
 
 int fsort(const void *a, const void *b) {
-	if (num_in_str(*(char**)a) < num_in_str(*(char**)b)) {
+	if( ( (char**) a ) < (char**) b) {
 	    counter++;
 	    return 1;
 	}
@@ -55,22 +60,20 @@ int fsort(const void *a, const void *b) {
 
 int main(int agvc, char *argv[]) {
 
-	char **mass = NULL;
-	mass = inp_str(mass);
+	inp_str();
 
 	if (mass == 0) {
 	    puts("\nERROR\n");
 	    return 1;
 	}
-      qsort(mass, N, sizeof(char *), fsort);
-
-	for(int i=0;i<N;i++)
-	printf("%d\n", num_in_str(mass[i]));
-
+      qsort(mass[0], N, sizeof(char *), fsort);
 
 	printf("OUTPUT:\n");
-printf("Number of permutation: %d\n", counter);
+	printf("Number of permutation: %d\n", counter);
 	out_str(mass);
 
 	return 0;
  }
+
+
+unsigned char a = 1024;
