@@ -11,7 +11,7 @@ clean:
 gen: gen.c
 	gcc -Wall -g -std=c99 gen.c -o gen 
 custom.txt: gen
-	./gen 10 
+	./gen 999999 
 ctest: custom.txt Lab_2
 	time ./Lab_2 < custom.txt && rm custom.txt
 indent: *.c
