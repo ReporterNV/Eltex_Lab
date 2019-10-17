@@ -15,10 +15,9 @@ void main(int argc, char *argv[])
 	int k = rand() % 20 + 2;
 	for (int j = 0; j < k; j++) {	// gen str
 	    char ch = rand() % 42 + 48;
-	    while ((ch > 57) && (ch < 65))
-		ch = rand() % 42 + 48;
-
-	    fprintf(file, "%c", rand() % 42 + 48);
+	    while ((57<ch) && (ch < 65))
+	    	    ch = rand() % 42 + 48;
+	    fprintf(file, "%c", ch);
 	}
 	fprintf(file, "\n");
     }
