@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #define MAX_LEN 1024
 
-static int N = 0;
-static unsigned int counter = 0;
+//static int N = 0;
+//static unsigned int counter = 0;
 
 
-global char ***mass = NULL;
-
+char ***mass = NULL;
+/*
 int num_in_str(char *p)
 {
     int num_in_ln = 0;
@@ -26,7 +26,6 @@ void inp_str()
 
     if (abs(!N)) {
 	printf("\nNo lines\n");
-break();    
 }
 
     mass = (char ***) calloc(2, sizeof(char **));
@@ -66,13 +65,25 @@ free(p);
 }
 
 }
-
+*/
 int main(int agvc, char *argv[]) {
 	mass = (char ***)calloc(2, sizeof(char**));
-	mass[0] = (char **)calloc(N, sizeof(char*));
-	mass[1] = (char **)calloc(N, sizeof(char*));
+	mass[0] = (char **)calloc(2, sizeof(char*));
+	mass[1] = (char **)calloc(2, sizeof(char*));
+mass[0][1] = (char*)malloc(sizeof(char)*strlen("1aaa1"));
+mass[0][2] = (char*)malloc(sizeof(char)*strlen("222222b"));
 
+mass[1][1] = (char*)malloc(sizeof(char));
+//strcpy(mass[1][1], (char*)strlen("1aaa1"));
+mass[1][2] = (char*)malloc(sizeof(char));
+//strcpy(mass[1][2], (char*)strlen("222222b"));
 
+for(int i=0;i<2;i++){
+free(mass[0][i]);
+free(mass[1][i]);
+}
+	
+	free(mass);
 /*	inp_str();
 
 	if (mass == 0) {
@@ -90,6 +101,3 @@ int main(int agvc, char *argv[]) {
 */
 	return 0;
  }
-
-
-unsigned char a = 1024;
