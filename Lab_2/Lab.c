@@ -74,10 +74,14 @@ mass[0][1] = (char*)malloc(sizeof(char)*strlen("1aaa1"));
 mass[0][2] = (char*)malloc(sizeof(char)*strlen("222222b"));
 
 mass[1][1] = (char*)malloc(sizeof(char));
-sprintf(mass[1][1], "%lu", strlen("1aaa1"));
+sprintf(mass[1][1], "%lu", strlen("1aaa100000"));
 mass[1][2] = (char*)malloc(sizeof(char));
 sprintf(mass[1][2], "%lu", strlen("222222b"));
 
+if(mass[1][1]<mass[1][2]){
+printf("%s\n", mass[1][1]);
+printf("%s\n", mass[1][2]);
+}
 for(int i=0;i<2;i++){
 free(mass[0][i]);
 free(mass[1][i]);
