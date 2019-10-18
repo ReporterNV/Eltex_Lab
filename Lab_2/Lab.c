@@ -74,9 +74,9 @@ mass[0][1] = (char*)malloc(sizeof(char)*strlen("1aaa1"));
 mass[0][2] = (char*)malloc(sizeof(char)*strlen("222222b"));
 
 mass[1][1] = (char*)malloc(sizeof(char));
-//strcpy(mass[1][1], (char*)strlen("1aaa1"));
+sprintf(mass[1][1], "%lu", strlen("1aaa1"));
 mass[1][2] = (char*)malloc(sizeof(char));
-//strcpy(mass[1][2], (char*)strlen("222222b"));
+sprintf(mass[1][2], "%lu", strlen("222222b"));
 
 for(int i=0;i<2;i++){
 free(mass[0][i]);
