@@ -29,7 +29,6 @@ void input()
 }
 
 	mass = (char ***)calloc(N, sizeof(char**));
-	mass[0] = (char **)calloc(2, sizeof(char*));
     
     char buff[MAX_LEN];
 
@@ -50,7 +49,7 @@ void input()
 }
 
 void output() {
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < N; i++)
 	   printf("%s\n", mass[i][0]);
 }
 /*
@@ -62,16 +61,18 @@ int fsort(const void *a, const void *b) {
 	else 
 	return -1;
     }
-
-void free_all(char **p){
+*/
+void free_all(){
 
     for (int i = 0; i < N; i++) {
-	 free(p[i]);
-free(p);
+	 free(mass[i][0]);
+	 free(mass[i][1]);
+
+free(mass[i]);
 }
 
 }
-*/
+
 int main(int agvc, char *argv[]) {
 input();
 
@@ -80,19 +81,8 @@ printf("%s\n", mass[1][1]);
 
 output();
 
-/*
-if(mass[0][1][0]<mass[1][1][0])
-puts("DONE");	
-*/	
-/*printf("%s\n", mass[1][1]);
-printf("%s\n", mass[1][2]);
-}*/
-for(int i=0;i<2;i++){
-free(mass[0][i]);
-free(mass[1][i]);
-}
-	//rewrite to use 2 arrays
-	
+
+	free_all();	
 	free(mass);
 /*	
  	inp_str();
