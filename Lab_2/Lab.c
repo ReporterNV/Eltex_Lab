@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define MAX_LEN 1024
 
-//static int N = 0;
+static int N = 0;
 //static unsigned int counter = 0;
 
 
@@ -19,7 +19,7 @@ int num_in_str(char *p)
 return num_in_ln;
 }
 */
-void inp_str()
+void input()
 {
     printf("\n Enter number of strings: ");
     scanf("%u", &N);
@@ -28,16 +28,25 @@ void inp_str()
 	fprintf(stderr,"\nNo lines\n");
 }
 
+	mass = (char ***)calloc(N, sizeof(char**));
+	mass[0] = (char **)calloc(2, sizeof(char*));
     
     char buff[MAX_LEN];
 
     for (int i = 0; i < N; i++) {
 	scanf("%s", buff);
-	z[0][i] = (char *) malloc(sizeof (char) * strlen(buff));
-	strcpy(z[0][i], buff);
-        *z[1][i]= (unsigned char)num_in_str(z[0][i]); 
-}
-    return z;
+
+	mass[i] = (char **)calloc(2, sizeof(char*));
+	
+	mass[i][0] = (char *) malloc(sizeof (char) * strlen(buff));
+	strcpy(mass[i][0], buff);
+        mass[i][1]= (char*)malloc(sizeof(char));	
+	sprintf(mass[i][1], "%lu", strlen(buff));
+    
+   
+    }
+
+
 }
 
 void output() {
@@ -64,18 +73,7 @@ free(p);
 }
 */
 int main(int agvc, char *argv[]) {
-	mass = (char ***)calloc(2, sizeof(char**));
-	mass[0] = (char **)calloc(2, sizeof(char*));
-	mass[1] = (char **)calloc(2, sizeof(char*));
-mass[0][0] = (char*)malloc(sizeof(char)*strlen("1aaa1"));
-mass[1][0] = (char*)malloc(sizeof(char)*strlen("222222b"));
-strcpy( mass[0][0] , "1aaa1");
-strcpy( mass[1][0] , "22222b");
-
-mass[0][1] = (char*)malloc(sizeof(char));
-sprintf(mass[0][1], "%lu", strlen("1aaa1"));
-mass[1][1] = (char*)malloc(sizeof(char));
-sprintf(mass[1][1], "%lu", strlen("222222b"));
+input();
 
 printf("%s\n", mass[0][1]);
 printf("%s\n", mass[1][1]);
