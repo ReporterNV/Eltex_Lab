@@ -86,6 +86,7 @@ for(int i=0;i<2;i++){
 free(mass[0][i]);
 free(mass[1][i]);
 }
+	//rewrite to use 2 arrays
 	
 	free(mass);
 /*	inp_str();
