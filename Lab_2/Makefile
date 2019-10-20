@@ -9,10 +9,10 @@ clean:
 gen: gen.c
 	gcc -Wall -std=c99 gen.c -o gen 
 custom.txt: gen
-	./gen 100000 
+	./gen 100 10 
 ctest: custom.txt Lab_2
-	time ./Lab_2 < custom.txt 
-regen: gen
-	rm custom.txt && ./gen 10000000
+	time (./Lab_2 < custom.txt) 
+old: Lab_OLD.c
+	gcc Lab_OLD.c && time ./a.out < custom.txt
 indent: *.c
 	indent -kr -i8 -ts8 -l80 -sob -ss -bs-linux *.c	
