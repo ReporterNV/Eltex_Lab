@@ -1,88 +1,52 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#define MAX_LEN 1024
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
-static int N = 0;
-static unsigned int counter = 0;
+typedef struct {
+char name[256];
+float lenght;
+unsigned stops;
+float price; 
+}pass;
 
-int num_in_str(char *p)
-{
-    int num_in_ln = 0;
-    unsigned short str_len = strlen(p);
-    for (int i = 0; i < str_len; i++)
-	if((p[i]<='9')&&(p[i]>='0'))	
-		num_in_ln++;
-return num_in_ln;
+pass input(){
+pass in;
+puts("Enter name of tour: ");
+scanf("%255s", in.name); 
+puts("Enter route lenght: ");
+scanf("%f", &in.lenght);
+puts("Enter number of stops: ");
+scanf("%u", &in.stops);
+puts("Enter price of tour: ");
+scanf("%f", &in.price);
+return in;
 }
 
-char **inp_str(char **p)
-{
-    printf("\n Enter number of strings: ");
-    scanf("%u", &N);
 
-    if (abs(!N)) {
-	printf("\nNo lines\n");
-	return 0;
-    }
+int main(){
+unsigned int count = 0;
+printf("Enter number of tours: ");
+scanf("%u", &count);
 
-    p = (char **) calloc(N, sizeof(char *));
+puts("");
 
-    char buff[MAX_LEN];
+if((count<1)||(count>5)){
+	fprintf(stderr, "Wrong number");
+	return 1;
+}
+pass start[4];
 
-    for (int i = 0; i < N; i++) {
-	scanf("%s", buff);
-	p[i] = (char *) malloc(sizeof (char) * strlen(buff));
-	strcpy(p[i], buff);
-    }
+for(int i =0; i <count; i++)
+	start[i] = input();
 
-    return p;
+for(int i = 0; i< count; i++){
+	printf("Pass #%d :\n", i+1);
+	printf("Name of tour: %s\n", &start[i].name);
+	printf("Route lenght: %f\n", start[i].lenght);
+	printf("Number of stops: %d\n", start[i].stops);
+	printf("Price of  tour: %d\n\n", start[i].price);
 }
 
-void out_str(char **p) {
-	for (int i = 0; i < N; i++)
-	   printf("%s\n", p[i]);
+
+return 0;
 }
-
-int fsort(const void *a, const void *b) {
-	if (num_in_str(*(char**)a) < num_in_str(*(char**)b)) {
-	    counter++;
-	    return 1;
-	}
-	else 
-	return -1;
-    }
-
-void free_all(char **p){
-
-    for (int i = 0; i < N; i++) {
-	 free(p[i]);
-}
-
-}
-
-int main(int agvc, char *argv[]) {
-
-	char **mass = NULL;
-	mass = inp_str(mass);
-puts("\nEND INP\n");
-	if (mass == 0) {
-	    puts("\nERROR\n");
-	    return 1;
-	}
-      qsort(mass, N, sizeof(char *), fsort);
-
-puts("\nEND sort\n");
-
-
-	printf("OUTPUT:\n");
-printf("Number of permutation: %d\n", counter);
-	out_str(mass);
-
-puts("\nEND out\n");
-free_all(mass);
-puts("\nEND elem\n");
-free(mass);
-puts("\nEND free\n");
-	return 0;
- }
