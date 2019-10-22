@@ -45,7 +45,7 @@ int main()
 		printf("Name of tour: %s\n", &start[i].name);
 		printf("Route lenght: %f\n", start[i].lenght);
 		printf("Number of stops: %d\n", start[i].stops);
-		printf("Price of  tour: %d\n\n", start[i].price);
+		printf("Price of  tour: %f\n\n", start[i].price);
 	}
 
 	return 0;
