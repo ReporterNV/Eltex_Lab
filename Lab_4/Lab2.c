@@ -51,6 +51,8 @@ else
 				fprintf(out, " ");
 }
 	}
+fclose(out);
+fclose(in);
 
 	return 0;
 }

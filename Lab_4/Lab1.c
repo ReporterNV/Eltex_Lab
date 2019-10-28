@@ -2,6 +2,8 @@
 #include<string.h>
 #include<stdlib.h>
 
+#define BUFF_SIZE 255
+
 char *outname(char *inname)
 {
 	char *a = inname;
@@ -28,12 +30,11 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	//Make this function inline
 	FILE *out = NULL;
 
 	if ((out = fopen(outname(argv[1]), "wt")) == NULL) {
 
-		char a[255];
+		char a[BUFF_SIZE];
 		fprintf(stderr,
 			"\nCannot create file for write. Use stdout.\n");
 		while (fscanf(in, "%s", a) > 0) {
@@ -42,14 +43,14 @@ int main(int argc, char *argv[])
 		}
 	} else {
 
-		char a[255];
+		char a[BUFF_SIZE];
 
 		while (fscanf(in, "%s", a) > 0) {
 			if (!strchr(a, argv[2][0]))
 				fprintf(out, "%s\n", a);
 		}
 	}
-
-	//      printf("|%s|", argv[1]);
+fclose(in);
+fclose(out);
 	return 0;
 }
