@@ -28,28 +28,29 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	//Make this function inline
 	FILE *out = NULL;
+
+	char a;
 
 	if ((out = fopen(outname(argv[1]), "wt")) == NULL) {
 
-		char a[255];
 		fprintf(stderr,
 			"\nCannot create file for write. Use stdout.\n");
-		while (fscanf(in, "%s", a) > 0) {
-			if (!strchr(a, argv[2][0]))
-				fprintf(stdout, "%s\n", a);
+		while ( (a = getc(in))!= EOF ) {
+			if (a != argv[2][0])
+				fprintf(stdout, "%c", a);
+else 	
+				fprintf(stdout, " " );	
 		}
 	} else {
 
-		char a[255];
-
-		while (fscanf(in, "%s", a) > 0) {
-			if (!strchr(a, argv[2][0]))
-				fprintf(out, "%s\n", a);
-		}
+		while ( (a = getc(in))!= EOF ) {
+			if ( a != argv[2][0])
+				fprintf(out, "%c", a);
+else 		
+				fprintf(out, " ");
+}
 	}
 
-	//      printf("|%s|", argv[1]);
 	return 0;
 }
