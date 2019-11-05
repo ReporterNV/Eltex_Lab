@@ -8,8 +8,11 @@ Lab2test: libstat.a Lab2
 	./Lab2 
 Lab3: Lab1.c Lab2.c 
 	gcc -fPIC -shared  Lab1.c -o libDLL.so && gcc Lab2.c -o Lab3 -L. -lDLL -Wl,-rpath,. 
-	gcc -Wall -fPIC -shared  Lab1.c -o Lab1.so
 Lab3test: Lab3
 	./Lab3	
+Lab4: Lab3.c Lab4.c 
+	gcc -shared -o libDLL.so -fPIC Lab1.c && gcc Lab4.c -o Lab4 -ldl 
+Lab4test: Lab4
+	./Lab4	
 clean: 
 	rm Lab2 Lab1 Lab3 *.a *.o *.so 
