@@ -25,7 +25,7 @@ fprintf(stderr,"ERROR:%s\n", dlerror());
 return -1;
 }
 
-float *division(int, int);
+float (*division)(int, int);
 *(void **) &division =  dlsym(lib_handle, "division");
 
 if(division == NULL){
