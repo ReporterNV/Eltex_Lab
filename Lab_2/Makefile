@@ -13,6 +13,6 @@ custom.txt: gen
 ctest: custom.txt Lab_2
 	time (./Lab_2 < custom.txt) 
 old: Lab_OLD.c
-	gcc Lab_OLD.c && time ./a.out < custom.txt
+	gcc -std=c99 Lab_OLD.c && time ./a.out < custom.txt
 indent: *.c
 	indent -kr -i8 -ts8 -l80 -sob -ss -bs-linux *.c	
