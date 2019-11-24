@@ -14,11 +14,11 @@
 #define MAX_SIZE 1024
 
 
-#define MSGPERM 0600    // msg queue permission
-#define MSGTXTLEN 128   // msg text length
+#define MSGPERM 0600		// msg queue permission
+#define MSGTXTLEN 128		// msg text length
 #define MSGKEY 32769
-struct msg_buf {
+struct msg_buf
+{
   long mtype;
   char mtext[MSGTXTLEN];
-  int len;
 } msg;
