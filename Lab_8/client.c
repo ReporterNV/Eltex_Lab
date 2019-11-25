@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
 		printf("Message sended\n");
 	}
 */
-	msgrcv(msqid, &MSG, sizeof("TEST"), 0, IPC_NOWAIT);
+	msgrcv(msqid, &MSG, sizeof (msg) - sizeof (long), 0, IPC_NOWAIT);
 	printf("TAKED MSG: %s\n", MSG.mtext);
 
 	if (msgctl(msqid, IPC_RMID, NULL)) {
