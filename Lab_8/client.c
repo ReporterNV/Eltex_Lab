@@ -1,36 +1,51 @@
 #include"msgq.h"
-
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
+	int msqid;
 	
-	key_t key = ftok("./Lab.c", 'M');
+	key_t key = ftok("./server.c", 'S');
 	printf("\nKEY: %d\n", key);
 	
-	int msqid;
 	if ((msqid = msgget(key, MSGPERM )) < 0) {
 		fprintf(stderr, "ERROR: cannot open message queue.\n");
 		return -1;
 	}
-
 	printf("Connected is correct.\n");
-
-	struct msg_buf MSG;
-/*
-	int send = msgsnd(msqid, &MSG, sizeof (msg) - sizeof (long), IPC_NOWAIT);
-	if (send < 0) {
+	
+	struct msg_buf MyMSG1 = { 1, "1" };
+	struct msg_buf MyMSG2 = { 1, "2" };
+	struct msg_buf MyMSG3 = { 1, "0" };
+	struct msg_buf MyMSG4 = { 1, "-1"};
+	
+	
+	if (msgsnd(msqid, &MyMSG1, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
 		perror(strerror(errno));
 		return -2;
 	} else {
 		printf("Message sended\n");
 	}
-*/
-	msgrcv(msqid, &MSG, sizeof (msg) - sizeof (long), 0, IPC_NOWAIT);
-	printf("TAKED MSG: %s\n", MSG.mtext);
-
-	if (msgctl(msqid, IPC_RMID, NULL)) {
+	
+	if (msgsnd(msqid, &MyMSG2, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
 		perror(strerror(errno));
-		return 1;
+		return -2;
+	} else {
+		printf("Message sended\n");
 	}
 
-	printf("message queue %d is gone\n", msqid);
+	if (msgsnd(msqid, &MyMSG3, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
+		perror(strerror(errno));
+		return -2;
+	} else {
+		printf("Message sended\n");
+	}
+
+	if (msgsnd(msqid, &MyMSG4, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
+		perror(strerror(errno));
+		return -2;
+	} else {
+		printf("Message sended\n");
+	}
+
+	printf("My job is done. Bye.\n");
 	return 0;
 }
