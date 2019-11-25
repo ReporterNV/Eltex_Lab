@@ -11,6 +11,8 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	printf("Connected is correct.\n");
+	//int x= 0;
+	//printf("Enter number: %d", &x);	
 	
 	struct msg_buf MyMSG1 = { 1, "1" };
 	struct msg_buf MyMSG2 = { 1, "2" };
@@ -31,7 +33,7 @@ int main(int argc, char *argv[])
 	} else {
 		printf("Message sended\n");
 	}
-
+	sleep(:);
 	if (msgsnd(msqid, &MyMSG3, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
 		perror(strerror(errno));
 		return -2;
