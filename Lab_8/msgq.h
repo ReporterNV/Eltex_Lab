@@ -20,5 +20,5 @@
 struct msg_buf
 {
   long mtype;
-  char mtext[MSGTXTLEN];
+  long mtext;
 } msg;

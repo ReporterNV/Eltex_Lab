@@ -11,41 +11,35 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	printf("Connected is correct.\n");
-	//int x= 0;
-	//printf("Enter number: %d", &x);	
+	printf("\nEnter 0 for help\n");	
 	
-	struct msg_buf MyMSG1 = { 1, "1" };
-	struct msg_buf MyMSG2 = { 1, "2" };
-	struct msg_buf MyMSG3 = { 1, "0" };
-	struct msg_buf MyMSG4 = { 1, "-1"};
-	
-	
-	if (msgsnd(msqid, &MyMSG1, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
-		perror(strerror(errno));
-		return -2;
-	} else {
-		printf("Message sended\n");
-	}
-	
-	if (msgsnd(msqid, &MyMSG2, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
-		perror(strerror(errno));
-		return -2;
-	} else {
-		printf("Message sended\n");
-	}
-	sleep(:);
-	if (msgsnd(msqid, &MyMSG3, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
-		perror(strerror(errno));
-		return -2;
-	} else {
-		printf("Message sended\n");
-	}
-
-	if (msgsnd(msqid, &MyMSG4, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
-		perror(strerror(errno));
-		return -2;
-	} else {
-		printf("Message sended\n");
+	int x = 0;
+	while(x > -1){	
+	printf("Enter number: %d", &x);	
+	scanf("%i", &x);	
+		
+	if(x > 0){	
+		struct msg_buf MyMSG = { 1, x };
+			
+		if (msgsnd(msqid, &MyMSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
+			perror(strerror(errno));
+			return -2;
+		} else {
+			printf("Message sended\n");
+		}
+	}else
+		if(x < 0){
+			struct msg_buf MyMSG = { 1, -1 };
+			if (msgsnd(msqid, &MyMSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
+				perror(strerror(errno));
+				return -2;
+			} else {
+				printf("Close message sended\n");
+			}
+		}else{
+			puts("Enter number for calculation;");
+			puts("Enter 0 for help;");
+			puts("Enter -1 for exit;");}
 	}
 
 	printf("My job is done. Bye.\n");

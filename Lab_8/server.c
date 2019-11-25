@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
 	struct msg_buf MSG;
 	while(1){
 	msgrcv(msqid, &MSG, sizeof (msg) - sizeof (long), 0, 0);
-	x = atoi(MSG.mtext);
+	x = MSG.mtext;	
 	fprintf(stderr, "Take:%d\n", x );
 	if(x < 0){
 	fprintf(stderr, "Received exit message\n");
