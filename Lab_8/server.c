@@ -38,14 +38,14 @@ int main(int argc, char *argv[]){
 		if (msgctl(msqid, IPC_RMID, NULL)) {
 			perror(strerror(errno));
 			return -2; }
-	fprintf(stderr, "\n(Server)Message queue closed\n");
+	fprintf(stderr, "\n(Server)Message queue was closed\n");
 	return 0;
 	}else{
 		if(y == 0){
 			y = x;
 		}else{
 			//send result;
-			printf("\n(Server)RESULT: %d", function(x,y));
+			printf("\n\n(Server)RESULT: %d\n"\n", function(x,y));
 			x = 0; y = 0;
 			}	
 		}

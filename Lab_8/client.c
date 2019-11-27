@@ -13,19 +13,30 @@ int main(int argc, char *argv[])
 	printf("\n\t(Client)Connected is correct.\n");
 	printf("\n\t(Client)Enter 0 for help\n");	
 	
+	_Bool flag = 0; 	
 	int x = 0;
+	
+	struct msg_buf ANS = { 2, 0 };
+	struct msg_buf MSG = { 1, x };
+	
 	while(x > -1){	
-	printf("Enter number: ");	
+	printf("\n\t(Client)Enter number: ");	
 	scanf("%i", &x);	
 		
 	if(x > 0){	
-		struct msg_buf MyMSG = { 1, x };
-			
+		
+		MSG = { 1, x };
 		if (msgsnd(msqid, &MyMSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
 			perror(strerror(errno));
-			return -2;
-		} else {
-			printf("\n\t(Client)Message sended\n");
+			return -2;}
+			
+		printf("\n\t(Client)Message sended\n");
+		
+		if( flag ){
+			msgrcv(msqid, &ANS, sizeof (msg) - sizeof (long), 1, 0);
+			printf("\nRESULT: %d\n", ANS.mtext);
+		}else
+			flag++;
 		}
 	}else
 		if(x < 0){
@@ -37,11 +48,11 @@ int main(int argc, char *argv[])
 				printf("\n\t(Client)Close message sended\n");
 			}
 		}else{
-			puts("\n\t(Client)Enter number for calculation;");
-			puts("(Client)Enter 0 for help;");
-			puts("(Client)Enter -1 for exit;");}
+			printf("\n\t(Client)Enter number for calculation;");
+			printf("\n\t(Client)Enter 0 for help;");
+			printf("\n\t(Client)Enter -1 for exit;\n\n");}
 	}
 
-	printf("(Client)My job is done. Bye.\n");
+	printf("\n\t(Client)My job is done. Bye.\n");
 	return 0;
 }
