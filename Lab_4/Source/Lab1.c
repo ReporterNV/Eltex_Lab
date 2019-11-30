@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 				fprintf(out, "%s\n", a);
 		}
 	}
-fclose(in);
-fclose(out);
+	fclose(in);
+	fclose(out);
 	return 0;
 }
