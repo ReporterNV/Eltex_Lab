@@ -36,23 +36,23 @@ int main(int argc, char *argv[])
 
 		fprintf(stderr,
 			"\nCannot create file for write. Use stdout.\n");
-		while ( (a = getc(in))!= EOF ) {
+		while ((a = getc(in)) != EOF) {
 			if (a != argv[2][0])
 				fprintf(stdout, "%c", a);
-else 	
-				fprintf(stdout, " " );	
+			else
+				fprintf(stdout, " ");
 		}
 	} else {
 
-		while ( (a = getc(in))!= EOF ) {
-			if ( a != argv[2][0])
+		while ((a = getc(in)) != EOF) {
+			if (a != argv[2][0])
 				fprintf(out, "%c", a);
-else 		
+			else
 				fprintf(out, " ");
-}
+		}
 	}
-fclose(out);
-fclose(in);
+	fclose(out);
+	fclose(in);
 
 	return 0;
 }

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	} else
 		num = rand() % 100 + 2;
 
-	FILE *file = fopen("custom.txt", "w");
+	FILE *file = fopen("example", "w");
 	fprintf(file, "%u\n", num);
 
 	for (unsigned i = 0; i < num; i++) {
