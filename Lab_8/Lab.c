@@ -1,39 +1,137 @@
 #include"msgq.h"
-int main(int argc, char *argv[])
+
+int
+function (int a, int b)
 {
-//	struct msqid_ds info;
-	int msqid;
-	
-	key_t key = ftok("./Lab.c", 'M');
-	printf("\nKEY: %d\n", key);
-	
-	if ((msqid = msgget(key, MSGPERM | IPC_CREAT | IPC_EXCL)) < 0) {
-		fprintf(stderr, "ERROR: cannot create message queue.\n");
-		return -1;
+  while (a != b)
+    {
+      if (a > b)
+	a = a - b;
+      else
+	b = b - a;
+    }
+  return a;
+}
+
+//if(a ==function(a))
+//      printf("%d", a);
+int
+main (int argc, char *argv[])
+{
+
+  key_t key = ftok (".", 'S');
+  printf ("\nKEY: %d\n", key);
+
+  int msqid;
+
+  if ((msqid = msgget (key, MSGPERM | IPC_CREAT | IPC_EXCL)) < 0)
+    {
+      fprintf (stderr, "\n(Server)ERROR: cannot create message queue.\n");
+      return -1;
+    }
+  fprintf (stderr, "\nMessage queue create\n");
+
+  int threads = 0;
+
+  printf ("\nEnter number threads:");
+  if ((scanf ("%d", &threads) != 1) || (threads <= 0)
+      || (threads > MAX_THREADS))
+    {
+      fprintf (stderr, "Uncorect size\n");
+      fprintf (stderr, "\n(Server)Received exit message\n");
+      if (msgctl (msqid, IPC_RMID, NULL))
+	{
+	  perror (strerror (errno));
+	  return -2;
 	}
-	printf("\nMS Q created\n");
-	struct msg_buf mymassage = { 1, "TEST" };
-	struct msg_buf MSG;
-	printf("N:%d; MSG:%s\n", mymassage.mtype, mymassage.mtext);
+      fprintf (stderr, "\n(Server)Message queue closed\n");
+      return -1;
+    }
 
-	int send = msgsnd(msqid, &mymassage, sizeof (msg) - sizeof (long), IPC_NOWAIT);
-	if (send < 0) {
-		perror(strerror(errno));
-		return -2;
-	} else {
-		printf("Message sended\n");
+  printf ("Enter min: ");
+  int x = 0;
+  if ((scanf ("%d", &x) != 1) || (x > MAX_SIZE) || (x < 0))
+    {
+      fprintf (stderr, "Uncorect size\n");
+      fprintf (stderr, "\n(Server)Received exit message\n");
+      if (msgctl (msqid, IPC_RMID, NULL))
+	{
+	  perror (strerror (errno));
+	  return -2;
 	}
+      fprintf (stderr, "\n(Server)Message queue closed\n");
+      return -1;
+    }
 
-	msgrcv(msqid, &MSG, 1, MSG.mtype, IPC_NOWAIT);
-	printf("TAKED MSG: %s\n", MSG.mtext);
-
-	send = msgctl(msqid, IPC_RMID, NULL);
-	if (send < 0) {
-		perror(strerror(errno));
-		printf("msgctl (return queue) failed, ID: %d\n", send);
-		return 1;
+  printf ("Enter max: ");
+  int y = 0;
+  if ((scanf ("%d", &y) != 1) || (y > MAX_SIZE) || (y < 0))
+    {
+      fprintf (stderr, "Uncorect size\n");
+      fprintf (stderr, "\n(Server)Received exit message\n");
+      if (msgctl (msqid, IPC_RMID, NULL))
+	{
+	  perror (strerror (errno));
+	  return -2;
 	}
+      fprintf (stderr, "\n(Server)Message queue closed\n");
+      return -1;
+    }
 
-	printf("message queue %d is gone\n", msqid);
-	return 0;
+int i = 0;	
+for(i;i<(threads); i++){
+	printf("\n%d-%d\n", x + (y - x)/(threads) * (i), x + (y - x)/(threads) * (i+1)-1);
+}
+if((x+(y-x)/(threads*threads)-1) != y)
+	printf("\n%d-%d\n", x+(y-x)/(threads)*(threads), y);
+
+
+  pid_t pid[MAX_THREADS];
+  i = 0;
+
+  for (int j = x; j < y; j++)
+    {
+      pid[i] = fork ();
+      if (pid[i] < 0)
+	{			//error
+	  printf ("PID ERROR");
+	  return -3;
+	}
+      else if (pid[i] == 0)
+	{			//child
+	  printf ("Child process #%lu start work\n", getpid ());
+	  //if ((strstr(buff, search) > 0))
+	  return j;
+	}
+      i++;
+
+    }
+  
+  int stat = 0;
+  int status = 0;
+
+  for (int j = x; j < y; j++)
+    {
+      status = waitpid (pid[j], &stat, 0);
+      if (status == pid[j])
+	{
+	  if (WEXITSTATUS (stat) == -3)
+	    {
+	      printf ("Cannot create process\n");
+	    }
+	  printf ("Return: #%d str. PID: %lu\n", WEXITSTATUS (stat), pid[j]);
+	}
+    }
+
+
+
+  fprintf (stderr, "\n(Server)Received exit message\n");
+  if (msgctl (msqid, IPC_RMID, NULL))
+    {
+      perror (strerror (errno));
+      return -2;
+    }
+  
+  fprintf (stderr, "\n(Server)Message queue closed\n");
+  return 0;
 }
