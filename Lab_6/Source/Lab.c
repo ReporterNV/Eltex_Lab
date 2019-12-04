@@ -49,15 +49,17 @@ int main(int argc, char *argv[])
 
 	int stat = 0;
 	int status = 0;
-	
+
 	for (int j = 0; j < i; j++) {
 		status = waitpid(pid[j], &stat, 0);
 		if (status == pid[j]) {
 			if (WEXITSTATUS(stat) == 0)
-				printf("In line #%d could not find str. PID: %lu\n",
-				       j + 1,pid[j] );
+				printf
+				    ("In line #%d could not find str. PID: %lu\n",
+				     j + 1, pid[j]);
 			if (WEXITSTATUS(stat) == 1)
-				printf("In line #%d finded str. PID: %lu\n", j + 1, pid[j]);
+				printf("In line #%d finded str. PID: %lu\n",
+				       j + 1, pid[j]);
 			if (WEXITSTATUS(stat) == -3) {
 				printf("Cannot create process\n");
 			}
