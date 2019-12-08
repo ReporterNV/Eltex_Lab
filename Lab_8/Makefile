@@ -6,5 +6,5 @@ client: client.c msgq.h
 	gcc client.c -o client 
 sever: sever.c msgq.h
 	gcc server.c -o server 
-clean: 
-	rm server client 
+clear: 
+	rm Lab 
