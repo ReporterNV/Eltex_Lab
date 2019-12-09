@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	struct msg_buf MSG = { 1, 0 };
 	int msqid;
 	if ((msqid = msgget(key, MSGPERM | IPC_CREAT | IPC_EXCL)) < 0) {
-		fprintf(stderr, "\n(Server)ERROR: cannot create message queue.\n");
+		fprintf(stderr, "\nERROR: cannot create message queue.\n");
 		return -1;
 	}
 
@@ -83,12 +83,19 @@ int main(int argc, char *argv[])
 			} else if (pid[i] == 0) {	//child
 				if (SimpleCheck(i) != 0) {
 					printf("Process №%d find a simple number: %d\n", getpid(), i);
-					exit(0);
+					MSG.mtext = i;
+
+					if (msgsnd(msqid, &MSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
+						perror(strerror(errno));
+						return -2;
+					}
+
 				}
+				exit(0);
 			}
 		}
 
-	}/* else {
+	} else {
 		for (int i = min; i <= max - mod; i += threads - 1) {
 			pid[i] = fork();
 
@@ -97,46 +104,42 @@ int main(int argc, char *argv[])
 				return -3;
 			} else if (pid[i] == 0) {	//child
 
-				if (i + threads + mod != max) {
-					printf("Process №%d will check range %d:%d", getpid(), i, i + threads - 2);
-					for (int j = i; j < i + threads - 1; j++) {
+				if (i + threads + mod < max) {
+					max = i + threads - 1;
+					for (int j = i; j < max; j++) {
 						if (SimpleCheck(j) != 0) {
 							printf("\nProcess №%d find a simple number: %d\n", getpid(), j);
+							MSG.mtext = i;
+
+							if (msgsnd(msqid, &MSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
+								perror(strerror(errno));
+								return -2;
+							}
+							return 0;
 						}
 					}
-					return 0;
 				}
 
-			} else {
-				for (int j = i; j <= max; j++) {
-					//      printf("\nProcess №%d check %d\n", getpid(), j);
-					if (SimpleCheck(j) != 0) {
-						printf("Process №%d find a simple number: %d\n", getpid(), j);
-					}
-				}
-				return 0;
 			}
 		}
 	}
-*/
+
 	int stat = 0;
 	int status = 0;
-//	printf("Simple numbers: ");
+
 	for (int j = min; j <= max; j++) {
 		status = waitpid(pid[j], &stat, 0);
 		if (status == pid[j]) {
 			if (WEXITSTATUS(stat) == -3) {
 				fprintf(stderr, "Cannot create process\n");
 			}
-			if (WEXITSTATUS(stat) == 0)
-				printf("\n Process №%d done successful\n", pid[j]);
+			//if (WEXITSTATUS(stat) == 0)
+			//      printf("\n Process №%d done successful\n", pid[j]);
 		}
 	}
 
-	puts("Process done\n");
-//      while(msgrcv(msqid, &MSG, sizeof (msg) - sizeof (long), 1, 0) > 0 )
-//              printf("\nFinded simple number: %li.\n", MSG.mtext);    
-
+	while (msgrcv(msqid, &MSG, sizeof (msg) - sizeof (long), -100, IPC_NOWAIT) > 0)
+		printf("\nFinded simple number: %li.\n", MSG.mtext);
 	if (msgctl(msqid, IPC_RMID, NULL)) {
 		perror(strerror(errno));
 		return -2;
