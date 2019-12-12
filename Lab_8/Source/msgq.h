@@ -16,8 +16,7 @@
 #define MSGTXTLEN 128		// msg text length
 #define MSGKEY 32769
 
-struct msg_buf
-{
-  long mtype;
-  long mtext;
+struct msg_buf {
+	long mtype;
+	long mtext;
 } msg;

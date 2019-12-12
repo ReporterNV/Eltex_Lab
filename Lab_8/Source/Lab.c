@@ -1,7 +1,6 @@
 #include"msgq.h"
 
-int function(int a, int b)
-{
+int function(int a, int b) {
 	while (a != b) {
 		if (a > b)
 			a = a - b;
@@ -11,8 +10,7 @@ int function(int a, int b)
 	return a;
 }
 
-int SimpleCheck(int a)
-{
+int prime_check(int a) {
 	for (int i = 2; i < a; i++) {
 		int p = function(i, a);
 		if ((p != a) && (p != 1))
@@ -21,19 +19,31 @@ int SimpleCheck(int a)
 	return a;
 }
 
-int main(int argc, char *argv[])
-{
+int child_function(int a, int b, int msqid) {
+
+	struct msg_buf MSG = { 1, 0 };
+	for (int i = a; i <= b; i++) {
+		if (prime_check(i)) {
+			MSG.mtext = i;
+			if (msgsnd(msqid, &MSG, sizeof(msg) - sizeof(long), IPC_NOWAIT)) {
+				perror(strerror(errno));
+				return -3;
+			}
+		}
+	}
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
 
 	key_t key = ftok(".", 'S');
 	printf("\nKEY: %d\n", key);
 
-	struct msg_buf MSG = { 1, 0 };
 	int msqid;
 	if ((msqid = msgget(key, MSGPERM | IPC_CREAT | IPC_EXCL)) < 0) {
 		fprintf(stderr, "\nERROR: cannot create message queue.\n");
 		return -1;
 	}
-
 	fprintf(stderr, "\nMessage queue was created\n");
 
 	printf("\nEnter number of threads:");
@@ -69,59 +79,47 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	int mod = (max - min) % threads;
+	int mod = (max - min + 1) % threads;
+	int step = (max - min + 1 - mod) / threads;
 
 	pid_t pid[MAX_THREADS];
 
-	if ((max - min) <= threads) {
+	if (threads > (max - min)) {
 		for (int i = min; i <= max; i++) {
 			pid[i] = fork();
-
-			if (pid[i] < 0) {	//error
-				printf("PID ERROR");
-				return -3;
-			} else if (pid[i] == 0) {	//child
-				if (SimpleCheck(i) != 0) {
-					printf("Process №%d find a simple number: %d\n", getpid(), i);
-					MSG.mtext = i;
-
-					if (msgsnd(msqid, &MSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
-						perror(strerror(errno));
-						return -2;
-					}
-
+			if (pid[i] == 0) {
+				if (child_function(i, i, msqid)) {
+					fprintf(stderr, "\nERROR\n");
+					return -3;
 				}
-				exit(0);
+				return 0;
 			}
 		}
-
 	} else {
-		for (int i = min; i <= max - mod; i += threads - 1) {
-			pid[i] = fork();
+		for (int i = min; i < max; i += step) {
 
-			if (pid[i] < 0) {	//error
-				printf("PID ERROR");
-				return -3;
-			} else if (pid[i] == 0) {	//child
-
-				if (i + threads + mod < max) {
-					max = i + threads - 1;
-					for (int j = i; j < max; j++) {
-						if (SimpleCheck(j) != 0) {
-							printf("\nProcess №%d find a simple number: %d\n", getpid(), j);
-							MSG.mtext = i;
-
-							if (msgsnd(msqid, &MSG, sizeof (msg) - sizeof (long), IPC_NOWAIT)) {
-								perror(strerror(errno));
-								return -2;
-							}
-							return 0;
-						}
+			if ((i + step + mod - 1) < max) {
+				pid[i] = fork();
+				if (pid[i] == 0) {
+					if (child_function(i, i + step - 1, msqid)) {
+						fprintf(stderr, "\nERROR\n");
+						return -3;
 					}
+					return 0;
 				}
-
+			} else {
+				pid[i] = fork();
+				if (pid[i] == 0) {
+					if (child_function(i, max, msqid)) {
+						fprintf(stderr, "\nERROR\n");
+						return -3;
+					}
+					return 0;
+				}
+				break;
 			}
 		}
+
 	}
 
 	int stat = 0;
@@ -129,17 +127,16 @@ int main(int argc, char *argv[])
 
 	for (int j = min; j <= max; j++) {
 		status = waitpid(pid[j], &stat, 0);
-		if (status == pid[j]) {
-			if (WEXITSTATUS(stat) == -3) {
-				fprintf(stderr, "Cannot create process\n");
-			}
-			//if (WEXITSTATUS(stat) == 0)
-			//      printf("\n Process №%d done successful\n", pid[j]);
-		}
+		if (status == pid[j])
+			if (WEXITSTATUS(stat) == -3)
+				fprintf(stderr, "PROCESS ERROR\n");
+
 	}
 
-	while (msgrcv(msqid, &MSG, sizeof (msg) - sizeof (long), -100, IPC_NOWAIT) > 0)
-		printf("\nFinded simple number: %li.\n", MSG.mtext);
+	struct msg_buf MSG = { 1, 0 };
+
+	while (msgrcv(msqid, &MSG, sizeof(msg) - sizeof(long), -100, IPC_NOWAIT) > 0)
+		printf("\nFound a prime number: %li.\n", MSG.mtext);
 	if (msgctl(msqid, IPC_RMID, NULL)) {
 		perror(strerror(errno));
 		return -2;
