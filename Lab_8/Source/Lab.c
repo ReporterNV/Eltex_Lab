@@ -1,50 +1,20 @@
-#include"msgq.h"
-
-int function(int a, int b) {
-	while (a != b) {
-		if (a > b)
-			a = a - b;
-		else
-			b = b - a;
-	}
-	return a;
-}
-
-int prime_check(int a) {
-	for (int i = 2; i < a; i++) {
-		int p = function(i, a);
-		if ((p != a) && (p != 1))
-			return 0;
-	}
-	return a;
-}
-
-int child_function(int a, int b, int msqid) {
-
-	struct msg_buf MSG = { 1, 0 };
-	for (int i = a; i <= b; i++) {
-		if (prime_check(i)) {
-			MSG.mtext = i;
-			if (msgsnd(msqid, &MSG, sizeof(msg) - sizeof(long), IPC_NOWAIT)) {
-				perror(strerror(errno));
-				return -3;
-			}
-		}
-	}
-	return 0;
-}
+#include "includes.h"
 
 int main(int argc, char *argv[]) {
+
+	signal(SIGINT, close_function);
 
 	key_t key = ftok(".", 'S');
 	printf("\nKEY: %d\n", key);
 
-	int msqid;
+
 	if ((msqid = msgget(key, MSGPERM | IPC_CREAT | IPC_EXCL)) < 0) {
 		fprintf(stderr, "\nERROR: cannot create message queue.\n");
 		return -1;
 	}
 	fprintf(stderr, "\nMessage queue was created\n");
+
+
 
 	printf("\nEnter number of threads:");
 	int threads = 0;
@@ -57,6 +27,9 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+if(msqid == 0){
+	return 0;}
+	
 	printf("Enter min: ");
 	int min = 0;
 	if ((scanf("%d", &min) != 1) || (min > MAX_SIZE) || (min < 0)) {
@@ -68,6 +41,9 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+if(msqid == 0){
+	return 0;}
+	
 	printf("Enter max: ");
 	int max = 0;
 	if ((scanf("%d", &max) != 1) || (max > MAX_SIZE) || (max < min)) {
@@ -79,6 +55,9 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+if(msqid == 0){
+	return 0;}
+	
 	int mod = (max - min + 1) % threads;
 	int step = (max - min + 1 - mod) / threads;
 
@@ -137,6 +116,7 @@ int main(int argc, char *argv[]) {
 
 	while (msgrcv(msqid, &MSG, sizeof(msg) - sizeof(long), -100, IPC_NOWAIT) > 0)
 		printf("\nFound a prime number: %li.\n", MSG.mtext);
+
 	if (msgctl(msqid, IPC_RMID, NULL)) {
 		perror(strerror(errno));
 		return -2;
