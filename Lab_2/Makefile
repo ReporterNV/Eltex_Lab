@@ -14,7 +14,7 @@ example: gen
 	./gen 100 10 
 
 ctest: custom.txt Lab_2
-	time (./Lab_2 < custom.txt) 
+	time (./Lab_2 < example) 
 
 old: ./Source/Lab_OLD.c
 	gcc -std=c99 ./Source/Lab_OLD.c && time ./a.out < example 

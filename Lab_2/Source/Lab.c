@@ -82,7 +82,7 @@ int main(int agvc, char *argv[])
 
 	qsort(mass, N, sizeof (char **), fsort);
 
-	output();
+//	output();
 	printf("\nPermutation: %d\n", counter);
 	free_all();
 	free(mass);
