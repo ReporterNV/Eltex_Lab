@@ -1,4 +1,0 @@
-  PID TTY      STAT   TIME COMMAND
- 1485 ?        S      0:02 sshd: vrn@pts/0
- 1486 pts/0    Ss     0:00 -bash
- 3564 pts/0    R+     0:00 ps -x

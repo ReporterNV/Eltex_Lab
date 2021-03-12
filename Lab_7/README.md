@@ -1,2 +1,0 @@
-#ELTEX Lab #4
-
