@@ -1,0 +1,241 @@
+	(++) from command line, (!!) notice, Information: informational,
+[    18.402] Information: Module ABI versions:
+[    18.408] Information: systemd-logind: took control of session /org/freedesktop/login1/session/_31
+[    18.409] Information: xfree86: Adding drm device (/dev/dri/card0)
+[    18.410] Information: systemd-logind: got fd for /dev/dri/card0 226:0 fd 10 paused 0
+[    18.416] Information: LoadModule: "glx"
+[    18.460] Information: Loading /usr/lib/xorg/modules/extensions/libglx.so
+[    18.502] Information: Module glx: vendor="X.Org Foundation"
+[    18.502] Information: LoadModule: "nvidia"
+[    18.502] Information: Loading /usr/lib/xorg/modules/drivers/nvidia_drv.so
+[    18.602] Information: Module nvidia: vendor="NVIDIA Corporation"
+[    18.602] Information: NVIDIA dlloader X Driver  460.39  Thu Jan 21 21:54:11 UTC 2021
+[    18.602] Information: NVIDIA Unified Driver for all Supported NVIDIA GPUs
+[    18.602] Information: systemd-logind: releasing fd for 226:0
+[    18.604] Information: Loading sub module "fb"
+[    18.604] Information: LoadModule: "fb"
+[    18.604] Information: Loading /usr/lib/xorg/modules/libfb.so
+[    18.619] Information: Module fb: vendor="X.Org Foundation"
+[    18.619] Information: Loading sub module "wfb"
+[    18.619] Information: LoadModule: "wfb"
+[    18.620] Information: Loading /usr/lib/xorg/modules/libwfb.so
+[    18.624] Information: Module wfb: vendor="X.Org Foundation"
+[    18.624] Information: Loading sub module "ramdac"
+[    18.624] Information: LoadModule: "ramdac"
+[    18.624] Information: Module "ramdac" already built-in
+[    18.628] Information: Applying OutputClass "nvidia" options to /dev/dri/card0
+[    18.628] Information: Loading sub module "glxserver_nvidia"
+[    18.628] Information: LoadModule: "glxserver_nvidia"
+[    18.628] Information: Loading /usr/lib/nvidia/xorg/libglxserver_nvidia.so
+[    19.125] Information: Module glxserver_nvidia: vendor="NVIDIA Corporation"
+[    19.126] Information: NVIDIA GLX Module  460.39  Thu Jan 21 21:51:40 UTC 2021
+[    19.126] Information: NVIDIA: The X server supports PRIME Render Offload.
+[    19.886] Information: NVIDIA(0): NVIDIA GPU GeForce GTX 1050 Ti (GP107-A) at PCI:1:0:0 (GPU-0)
+[    19.886] Information: NVIDIA(0): Detected PCI Express Link width: 16X
+[    19.922] Information: NVIDIA(0): Validated MetaModes:
+[    19.922] Information: NVIDIA(0):     "DFP-2:nvidia-auto-select,DFP-4:nvidia-auto-select"
+[    19.922] Information: NVIDIA(0): Virtual screen size determined to be 3280 x 1080
+[    19.927] Information: NVIDIA: Using 24576.00 MB of virtual memory for indirect memory
+[    19.927] Information: NVIDIA:     access.
+[    19.929] Information: NVIDIA(0): ACPI: failed to connect to the ACPI event daemon; the daemon
+[    19.929] Information: NVIDIA(0):     may not be running or the "AcpidSocketPath" X
+[    19.929] Information: NVIDIA(0):     configuration option may not be set correctly.  When the
+[    19.929] Information: NVIDIA(0):     ACPI event daemon is available, the NVIDIA X driver will
+[    19.929] Information: NVIDIA(0):     try to use it to receive ACPI event notifications.  For
+[    19.929] Information: NVIDIA(0):     details, please see the "ConnectToAcpid" and
+[    19.929] Information: NVIDIA(0):     "AcpidSocketPath" X configuration options in Appendix B: X
+[    19.929] Information: NVIDIA(0):     Config Options in the README.
+[    19.944] Information: NVIDIA(0): Setting mode "DFP-2:nvidia-auto-select,DFP-4:nvidia-auto-select"
+[    20.043] Information: Loading sub module "dri2"
+[    20.043] Information: LoadModule: "dri2"
+[    20.043] Information: Module "dri2" already built-in
+[    20.043] Information: NVIDIA(0): [DRI2] Setup complete
+[    20.043] Information: NVIDIA(0): [DRI2]   VDPAU driver: nvidia
+[    20.043] Information: Initializing extension Generic Event Extension
+[    20.043] Information: Initializing extension SHAPE
+[    20.043] Information: Initializing extension MIT-SHM
+[    20.043] Information: Initializing extension XInputExtension
+[    20.043] Information: Initializing extension XTEST
+[    20.043] Information: Initializing extension BIG-REQUESTS
+[    20.043] Information: Initializing extension SYNC
+[    20.043] Information: Initializing extension XKEYBOARD
+[    20.043] Information: Initializing extension XC-MISC
+[    20.043] Information: Initializing extension SECURITY
+[    20.043] Information: Initializing extension XFIXES
+[    20.043] Information: Initializing extension RENDER
+[    20.043] Information: Initializing extension RANDR
+[    20.043] Information: Initializing extension COMPOSITE
+[    20.043] Information: Initializing extension DAMAGE
+[    20.043] Information: Initializing extension MIT-SCREEN-SAVER
+[    20.043] Information: Initializing extension DOUBLE-BUFFER
+[    20.043] Information: Initializing extension RECORD
+[    20.043] Information: Initializing extension DPMS
+[    20.043] Information: Initializing extension Present
+[    20.043] Information: Initializing extension DRI3
+[    20.043] Information: Initializing extension X-Resource
+[    20.043] Information: Initializing extension XVideo
+[    20.043] Information: Initializing extension XVideo-MotionCompensation
+[    20.043] Information: Initializing extension GLX
+[    20.043] Information: Initializing extension GLX
+[    20.043] Information: Indirect GLX disabled.
+[    20.043] Information: GLX: Another vendor is already registered for screen 0
+[    20.043] Information: Initializing extension XFree86-VidModeExtension
+[    20.043] Information: Initializing extension XFree86-DGA
+[    20.043] Information: Initializing extension XFree86-DRI
+[    20.043] Information: Initializing extension DRI2
+[    20.043] Information: Initializing extension NV-GLX
+[    20.043] Information: Initializing extension NV-CONTROL
+[    20.043] Information: Initializing extension XINERAMA
+[    20.500] Information: config/udev: Adding input device Power Button (/dev/input/event2)
+[    20.500] Information: LoadModule: "libinput"
+[    20.500] Information: Loading /usr/lib/xorg/modules/input/libinput_drv.so
+[    20.567] Information: Module libinput: vendor="X.Org Foundation"
+[    20.567] Information: Using input driver 'libinput' for 'Power Button'
+[    20.569] Information: systemd-logind: got fd for /dev/input/event2 13:66 fd 33 paused 0
+[    20.586] Information: event2  - Power Button: is tagged by udev as: Keyboard
+[    20.586] Information: event2  - Power Button: device is a keyboard
+[    20.586] Information: event2  - Power Button: device removed
+[    20.587] Information: XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 6)
+[    20.589] Information: event2  - Power Button: is tagged by udev as: Keyboard
+[    20.589] Information: event2  - Power Button: device is a keyboard
+[    20.590] Information: config/udev: Adding input device Power Button (/dev/input/event1)
+[    20.590] Information: Using input driver 'libinput' for 'Power Button'
+[    20.592] Information: systemd-logind: got fd for /dev/input/event1 13:65 fd 36 paused 0
+[    20.595] Information: event1  - Power Button: is tagged by udev as: Keyboard
+[    20.595] Information: event1  - Power Button: device is a keyboard
+[    20.595] Information: event1  - Power Button: device removed
+[    20.595] Information: XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 7)
+[    20.597] Information: event1  - Power Button: is tagged by udev as: Keyboard
+[    20.598] Information: event1  - Power Button: device is a keyboard
+[    20.599] Information: config/udev: Adding input device Sleep Button (/dev/input/event0)
+[    20.599] Information: Using input driver 'libinput' for 'Sleep Button'
+[    20.601] Information: systemd-logind: got fd for /dev/input/event0 13:64 fd 37 paused 0
+[    20.603] Information: event0  - Sleep Button: is tagged by udev as: Keyboard
+[    20.603] Information: event0  - Sleep Button: device is a keyboard
+[    20.604] Information: event0  - Sleep Button: device removed
+[    20.604] Information: XINPUT: Adding extended input device "Sleep Button" (type: KEYBOARD, id 8)
+[    20.606] Information: event0  - Sleep Button: is tagged by udev as: Keyboard
+[    20.606] Information: event0  - Sleep Button: device is a keyboard
+[    20.608] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=3 (/dev/input/event10)
+[    20.608] Information: No input driver specified, ignoring this device.
+[    20.608] Information: This device may have been added with another device file.
+[    20.609] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=7 (/dev/input/event11)
+[    20.609] Information: No input driver specified, ignoring this device.
+[    20.609] Information: This device may have been added with another device file.
+[    20.610] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=8 (/dev/input/event12)
+[    20.610] Information: No input driver specified, ignoring this device.
+[    20.610] Information: This device may have been added with another device file.
+[    20.611] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=9 (/dev/input/event13)
+[    20.611] Information: No input driver specified, ignoring this device.
+[    20.611] Information: This device may have been added with another device file.
+[    20.612] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=10 (/dev/input/event14)
+[    20.612] Information: No input driver specified, ignoring this device.
+[    20.612] Information: This device may have been added with another device file.
+[    20.612] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=11 (/dev/input/event15)
+[    20.612] Information: No input driver specified, ignoring this device.
+[    20.612] Information: This device may have been added with another device file.
+[    20.613] Information: config/udev: Adding input device HDA NVidia HDMI/DP,pcm=12 (/dev/input/event16)
+[    20.613] Information: No input driver specified, ignoring this device.
+[    20.613] Information: This device may have been added with another device file.
+[    20.614] Information: config/udev: Adding input device COUGAR230M COUGAR230M Gaming Mouse (/dev/input/event3)
+[    20.614] Information: Using input driver 'libinput' for 'COUGAR230M COUGAR230M Gaming Mouse'
+[    20.672] Information: systemd-logind: got fd for /dev/input/event3 13:67 fd 38 paused 0
+[    20.676] Information: event3  - COUGAR230M COUGAR230M Gaming Mouse: is tagged by udev as: Mouse
+[    20.676] Information: event3  - COUGAR230M COUGAR230M Gaming Mouse: device is a pointer
+[    20.677] Information: event3  - COUGAR230M COUGAR230M Gaming Mouse: device removed
+[    20.677] Information: XINPUT: Adding extended input device "COUGAR230M COUGAR230M Gaming Mouse" (type: MOUSE, id 9)
+[    20.681] Information: event3  - COUGAR230M COUGAR230M Gaming Mouse: is tagged by udev as: Mouse
+[    20.681] Information: event3  - COUGAR230M COUGAR230M Gaming Mouse: device is a pointer
+[    20.683] Information: config/udev: Adding input device COUGAR230M COUGAR230M Gaming Mouse (/dev/input/mouse0)
+[    20.683] Information: No input driver specified, ignoring this device.
+[    20.683] Information: This device may have been added with another device file.
+[    20.685] Information: config/udev: Adding input device Gaming KB Gaming KB (/dev/input/event4)
+[    20.685] Information: Using input driver 'libinput' for 'Gaming KB Gaming KB'
+[    20.688] Information: systemd-logind: got fd for /dev/input/event4 13:68 fd 39 paused 0
+[    20.691] Information: event4  - Gaming KB Gaming KB: is tagged by udev as: Keyboard
+[    20.692] Information: event4  - Gaming KB Gaming KB: device is a keyboard
+[    20.692] Information: event4  - Gaming KB Gaming KB: device removed
+[    20.692] Information: XINPUT: Adding extended input device "Gaming KB Gaming KB" (type: KEYBOARD, id 10)
+[    20.696] Information: event4  - Gaming KB Gaming KB: is tagged by udev as: Keyboard
+[    20.696] Information: event4  - Gaming KB Gaming KB: device is a keyboard
+[    20.699] Information: config/udev: Adding input device Gaming KB Gaming KB (/dev/input/event8)
+[    20.699] Information: No input driver specified, ignoring this device.
+[    20.699] Information: This device may have been added with another device file.
+[    20.700] Information: config/udev: Adding input device Gaming KB Gaming KB Consumer Control (/dev/input/event5)
+[    20.700] Information: Using input driver 'libinput' for 'Gaming KB Gaming KB Consumer Control'
+[    20.702] Information: systemd-logind: got fd for /dev/input/event5 13:69 fd 40 paused 0
+[    20.705] Information: event5  - Gaming KB Gaming KB Consumer Control: is tagged by udev as: Keyboard
+[    20.705] Information: event5  - Gaming KB Gaming KB Consumer Control: device is a keyboard
+[    20.705] Information: event5  - Gaming KB Gaming KB Consumer Control: device removed
+[    20.705] Information: libinput: Gaming KB Gaming KB Consumer Control: needs a virtual subdevice
+[    20.706] Information: XINPUT: Adding extended input device "Gaming KB Gaming KB Consumer Control" (type: MOUSE, id 11)
+[    20.707] Information: event5  - Gaming KB Gaming KB Consumer Control: is tagged by udev as: Keyboard
+[    20.707] Information: event5  - Gaming KB Gaming KB Consumer Control: device is a keyboard
+[    20.708] Information: config/udev: Adding input device Gaming KB Gaming KB System Control (/dev/input/event6)
+[    20.708] Information: Using input driver 'libinput' for 'Gaming KB Gaming KB System Control'
+[    20.709] Information: systemd-logind: got fd for /dev/input/event6 13:70 fd 41 paused 0
+[    20.710] Information: event6  - Gaming KB Gaming KB System Control: is tagged by udev as: Keyboard
+[    20.710] Information: event6  - Gaming KB Gaming KB System Control: device is a keyboard
+[    20.710] Information: event6  - Gaming KB Gaming KB System Control: device removed
+[    20.710] Information: XINPUT: Adding extended input device "Gaming KB Gaming KB System Control" (type: KEYBOARD, id 12)
+[    20.711] Information: event6  - Gaming KB Gaming KB System Control: is tagged by udev as: Keyboard
+[    20.711] Information: event6  - Gaming KB Gaming KB System Control: device is a keyboard
+[    20.711] Information: config/udev: Adding input device Gaming KB Gaming KB Keyboard (/dev/input/event7)
+[    20.711] Information: Using input driver 'libinput' for 'Gaming KB Gaming KB Keyboard'
+[    20.712] Information: systemd-logind: got fd for /dev/input/event7 13:71 fd 42 paused 0
+[    20.713] Information: event7  - Gaming KB Gaming KB Keyboard: is tagged by udev as: Keyboard
+[    20.713] Information: event7  - Gaming KB Gaming KB Keyboard: device is a keyboard
+[    20.713] Information: event7  - Gaming KB Gaming KB Keyboard: device removed
+[    20.713] Information: XINPUT: Adding extended input device "Gaming KB Gaming KB Keyboard" (type: KEYBOARD, id 13)
+[    20.714] Information: event7  - Gaming KB Gaming KB Keyboard: is tagged by udev as: Keyboard
+[    20.714] Information: event7  - Gaming KB Gaming KB Keyboard: device is a keyboard
+[    20.715] Information: config/udev: Adding input device HDA Intel PCH Front Mic (/dev/input/event17)
+[    20.715] Information: No input driver specified, ignoring this device.
+[    20.715] Information: This device may have been added with another device file.
+[    20.715] Information: config/udev: Adding input device HDA Intel PCH Rear Mic (/dev/input/event18)
+[    20.715] Information: No input driver specified, ignoring this device.
+[    20.715] Information: This device may have been added with another device file.
+[    20.715] Information: config/udev: Adding input device HDA Intel PCH Line (/dev/input/event19)
+[    20.715] Information: No input driver specified, ignoring this device.
+[    20.715] Information: This device may have been added with another device file.
+[    20.715] Information: config/udev: Adding input device HDA Intel PCH Line Out Front (/dev/input/event20)
+[    20.715] Information: No input driver specified, ignoring this device.
+[    20.715] Information: This device may have been added with another device file.
+[    20.716] Information: config/udev: Adding input device HDA Intel PCH Line Out Surround (/dev/input/event21)
+[    20.716] Information: No input driver specified, ignoring this device.
+[    20.716] Information: This device may have been added with another device file.
+[    20.716] Information: config/udev: Adding input device HDA Intel PCH Line Out CLFE (/dev/input/event22)
+[    20.716] Information: No input driver specified, ignoring this device.
+[    20.716] Information: This device may have been added with another device file.
+[    20.716] Information: config/udev: Adding input device HDA Intel PCH Front Headphone (/dev/input/event23)
+[    20.716] Information: No input driver specified, ignoring this device.
+[    20.716] Information: This device may have been added with another device file.
+[    20.716] Information: config/udev: Adding input device PC Speaker (/dev/input/event9)
+[    20.716] Information: No input driver specified, ignoring this device.
+[    20.716] Information: This device may have been added with another device file.
+[    20.720] Information: Using input driver 'libinput' for 'Gaming KB Gaming KB Consumer Control'
+[    20.720] Information: systemd-logind: returning pre-existing fd for /dev/input/event5 13:69
+[    20.720] Information: libinput: Gaming KB Gaming KB Consumer Control: is a virtual subdevice
+[    20.720] Information: XINPUT: Adding extended input device "Gaming KB Gaming KB Consumer Control" (type: KEYBOARD, id 14)
+[  3264.098] Information: event3  - COUGAR230M COUGAR230M Gaming Mouse: SYN_DROPPED event - some input events have been lost.
+[  4526.548] Information: config/udev: Adding input device GN Audio A/S Jabra Elite 85t (/dev/input/event24)
+[  4526.548] Information: Using input driver 'libinput' for 'GN Audio A/S Jabra Elite 85t'
+[  4526.549] Information: systemd-logind: got fd for /dev/input/event24 13:88 fd 67 paused 0
+[  4526.550] Information: event24 - GN Audio A/S Jabra Elite 85t: is tagged by udev as: Keyboard
+[  4526.550] Information: event24 - GN Audio A/S Jabra Elite 85t: device is a keyboard
+[  4526.550] Information: event24 - GN Audio A/S Jabra Elite 85t: device removed
+[  4526.550] Information: XINPUT: Adding extended input device "GN Audio A/S Jabra Elite 85t" (type: KEYBOARD, id 15)
+[  4526.551] Information: event24 - GN Audio A/S Jabra Elite 85t: is tagged by udev as: Keyboard
+[  4526.551] Information: event24 - GN Audio A/S Jabra Elite 85t: device is a keyboard
+[    18.359] Warning: Failed to open protocol names file lib/xorg/protocol.txt
+	Warning: warning, (EE) error, (NI) not implemented, (??) unknown.
+[    18.391] Warning: The directory "/usr/share/fonts/misc" does not exist.
+[    18.402] Warning: `fonts.dir' not found (or not valid) in "/usr/share/fonts/TTF".
+[    18.402] Warning: The directory "/usr/share/fonts/OTF" does not exist.
+[    18.402] Warning: The directory "/usr/share/fonts/Type1" does not exist.
+[    18.402] Warning: The directory "/usr/share/fonts/100dpi" does not exist.
+[    18.402] Warning: The directory "/usr/share/fonts/75dpi" does not exist.
+[    18.402] Warning: Hotplugging is on, devices using drivers 'kbd', 'mouse' or 'vmmouse' will be disabled.
+[    18.402] Warning: Disabling Keyboard0
+[    18.402] Warning: Disabling Mouse0
+[    18.415] Warning: Open ACPI failed (/var/run/acpid.socket) (No such file or directory)
