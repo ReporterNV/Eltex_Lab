@@ -4,5 +4,4 @@
 #части памяти процесса (в страницах). Вывести в файл строки вида
 #PID:разность, отсортированные по убыванию этой разности.
 
-ps  -axo pid,resident,share | grep -Ev 'PID' | awk '{print $1 ":" $2-$3}' | sort -k 2
-
+ps  -axo pid,resident,share | grep -Ev 'PID' | awk '{print $1 ":" $2-$3}' | sort -t ':' -rk2
