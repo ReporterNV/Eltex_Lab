@@ -5,15 +5,17 @@
 #include<stdlib.h>
 #include<unistd.h>
   //Реализация для 1ой матрицы
+//Выводить в файл
+char *FILENAME = "1.txt";
 
-float *ReadMatrix(int x, int y)
+float *ReadMatrix(FILE *file, int x, int y)
 {
 
 	float *a = (float *)malloc(sizeof(float) * (x * y));
 	printf("%d:%d\n", x, y);
 	
 	for(int i = 0; i< x*y; i++){
-		scanf("%f", &a[i]);
+		fscanf(file, "%f\n", &a[i]);
 		
 		//Тут должен быть кусок кода с очисткой терминала. Но ничего не сработало.
 		//printf("\b\b");
@@ -39,18 +41,54 @@ void PrintMatrix(float *matrix, int x, int y)
 	printf("\n");
 }
 
-void main()
-{
 
-	int x, y = 0;
-	//Получаем размерность
-	printf("Enter x: ");
-	scanf("%d", &x);
+void Clear(float** main, int size){
 
-	printf("Enter y: ");
-	scanf("%d", &y);
-	float *ptr = ReadMatrix(x, y);
-	PrintMatrix(ptr, x,y);
+	for(int i = 0; i<size;i++){
+	free(main[i]);
+	}
 
-	free(ptr);
 }
+
+int main()
+{
+	FILE *file = fopen(FILENAME, "r+");
+	float **MainPtr; 
+	int size = 1;
+	int x, y = 0;
+	
+
+	fscanf(file, "%d\n", &x);
+	fscanf(file, "%d\n", &y);
+	float *ptr = ReadMatrix(file, x, y);
+	//PrintMatrix(ptr, x,y);
+
+	if(!feof(file)){
+		MainPtr = malloc(sizeof(float **)*(size));
+		MainPtr[0] = ptr;	
+		fscanf(file, "%d\n", &x);
+		fscanf(file, "%d\n", &y);
+		ptr = ReadMatrix(file, x, y);
+		//PrintMatrix(ptr, x,y);
+		MainPtr[1] = ptr;
+		size++;
+	}else{
+	return 0;
+	}
+
+	while(!feof(file)){
+		MainPtr = realloc(MainPtr, sizeof(float**)*(++size));
+		MainPtr[size] = ptr;
+		fscanf(file, "%d\n", &x);
+		fscanf(file, "%d\n", &y);
+		float *ptr = ReadMatrix(file, x, y);
+		//PrintMatrix(ptr, x,y);
+
+	}
+
+	Clear(MainPtr,size);
+	fclose(file);
+	free(MainPtr);
+return 0;
+}
+
