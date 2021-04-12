@@ -29,6 +29,21 @@ UserList *AddUser()
 	return NewUser;
 }
 
+void EditUser(UserList *curr)
+{
+
+	puts("Entering new UserInfo:");
+	printf("SecondName:  ");
+	scanf("%s", curr->SecondName);
+	printf("AccountCode: ");
+	scanf("%u", &curr->AccountCode);
+	printf("Summary:     ");
+	scanf("%ld", &curr->Summary);
+	curr->LastChange = time(NULL);
+
+}
+
+
 void PrintNode(UserList * node)
 {
 	puts("");
@@ -135,6 +150,8 @@ UserList *InputTable(UserList * start)
 	fclose(file);
 	return first;
 }
+
+
 
 void Clear(UserList * start)
 {
