@@ -147,15 +147,32 @@ void Clear(UserList * start)
 
 }
 
-
-void DeleteNode(){
+UserList *DeleteNode(UserList * node, UserList * prev)
+{
+	if (prev == NULL) {
+		prev = node->next;
+		free(node);
+		return prev;
+	}
+	else{
+	UserList* tmp = node->next;
+	free(node);
+	prev->next=tmp;
+	return 0;
+	}
 
 }
 
-void SwapNodes(UserList *curr, UserList *prev){//Меняет текущий и следующий
-	UserList *tmp;// Все ещё не увере в том как мне перезаписывать start в случае если мы меняем 1ый элем и 2ой.
+void Sort()
+{
+//Сортировать созданием нового списка и обновлением start
+
+}
+
+void SwapNodes(UserList * curr, UserList * prev)
+{				//Меняет текущий и следующий
+	UserList *tmp;		// Все ещё не увере в том как мне перезаписывать start в случае если мы меняем 1ый элем и 2ой.
 	tmp = curr->next;
 	curr = (curr->next)->next;
-	
 
 }

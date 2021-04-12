@@ -30,9 +30,9 @@ void main()
 	//PrintNode(start->next);
 	//PrintNode(curr);
 	OutTable(start);
+	//start = DeleteNode(start,(UserList*)NULL);
+	DeleteNode(start->next->next, start->next);
 	ViewTable(start);
-	SwapNodes(start,NULL);
-	DeleteNode(start->next);
 	Clear(start);
 	//free (start);
 }
