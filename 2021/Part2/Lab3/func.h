@@ -180,6 +180,14 @@ UserList *DeleteNode(UserList * node, UserList * prev)
 
 }
 
+UserList* FindElem(UserList *start){
+
+printf("");
+
+
+}	
+
+
 void Sort()
 {
 //Сортировать созданием нового списка и обновлением start

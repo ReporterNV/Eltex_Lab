@@ -7,6 +7,7 @@
   //Реализация для 1ой матрицы
 //Выводить в файл
 char *FILENAME = "1.txt";
+char *FILEOUT  = "2.txt";
 
 float *ReadMatrix(FILE *file, int x, int y)
 {
@@ -53,6 +54,7 @@ void Clear(float** main, int size){
 int main()
 {
 	FILE *file = fopen(FILENAME, "r+");
+	FILE *out  = fopen(FILEOUT , "w+");
 	float **MainPtr; 
 	int size = 1;
 	int x, y = 0;
@@ -69,7 +71,7 @@ int main()
 		fscanf(file, "%d\n", &x);
 		fscanf(file, "%d\n", &y);
 		ptr = ReadMatrix(file, x, y);
-		//PrintMatrix(ptr, x,y);
+		PrintMatrix(ptr, x,y);
 		MainPtr[1] = ptr;
 		size++;
 	}else{
@@ -82,12 +84,13 @@ int main()
 		fscanf(file, "%d\n", &x);
 		fscanf(file, "%d\n", &y);
 		float *ptr = ReadMatrix(file, x, y);
-		//PrintMatrix(ptr, x,y);
+		PrintMatrix(ptr, x,y);
 
 	}
 
 	Clear(MainPtr,size);
 	fclose(file);
+	fclose(out);
 	free(MainPtr);
 return 0;
 }
