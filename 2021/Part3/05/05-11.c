@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
+#include<wait.h>
 
 int main()
 {
@@ -24,7 +25,8 @@ int main()
 			printf("Cannot create fork\n");
 			exit(-1);
 		} else if (pid > 0) {
-
+			wait(NULL);
+			wait(NULL);
 			close(fd[0]);
 			close(fd[1]);
 

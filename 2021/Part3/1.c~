@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<sys/types.h>
+
+
+int main(){
+
+int fd[2];
+if(pipe(fd)== 0){
+	printf("Cannot create pipe\n");
+			}
+printf("%d:%d\n", fd[0], fd[1]);
+execl("prog1","",fd[0], fd[1], NULL);
+sleep(10);
+close(fd[0]);
+close(fd[1]);
+return 0;
+}
