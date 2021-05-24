@@ -1,0 +1,1 @@
+cmd_/home/reporternv/Projects/Eltex_Lab/2021/Part4/mod1/hello.mod := { echo  /home/reporternv/Projects/Eltex_Lab/2021/Part4/mod1/hello.o;  echo; } > /home/reporternv/Projects/Eltex_Lab/2021/Part4/mod1/hello.mod

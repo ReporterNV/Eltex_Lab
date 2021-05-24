@@ -1,0 +1,1 @@
+cmd_/home/reporternv/Projects/Eltex_Lab/2021/Part4/mod1/modules.order := {   echo /home/reporternv/Projects/Eltex_Lab/2021/Part4/mod1/hello.ko; :; } | awk '!x[$$0]++' - > /home/reporternv/Projects/Eltex_Lab/2021/Part4/mod1/modules.order
